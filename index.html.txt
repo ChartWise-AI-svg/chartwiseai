@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChartWise AI Careers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at top,#0f172a,#020617);color:#fff;}
+header{text-align:center;padding:100px 20px 60px;}
+h1{font-size:48px;font-weight:700;background:linear-gradient(90deg,#4da3ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.subtitle{margin-top:15px;font-size:18px;opacity:0.7;}
+.container{max-width:1000px;margin:auto;padding:20px;}
+.card{background: rgba(255,255,255,0.05);backdrop-filter: blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:30px;margin:20px 0;transition:0.3s;}
+.card:hover{transform:translateY(-5px);border-color: rgba(77,163,255,0.5);}
+h2{margin-bottom:15px;color:#4da3ff;}
+ul{padding-left:20px;}
+li{margin:8px 0;opacity:0.85;}
+.apply-form{display:flex;flex-direction:column;}
+input,textarea{margin:10px 0;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background: rgba(255,255,255,0.05);color:#fff;}
+input:focus,textarea:focus{outline:none;border-color:#4da3ff;}
+button{margin-top:10px;padding:15px;border-radius:10px;border:none;background:linear-gradient(90deg,#4da3ff,#7c3aed);color:white;font-weight:600;cursor:pointer;transition:0.3s;}
+button:hover{transform:scale(1.03);opacity:0.9;}
+footer{text-align:center;padding:30px;opacity:0.4;}
+.fade-in{animation:fadeIn 1s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+
+<body>
+
+<header class="fade-in">
+<h1>ChartWise AI</h1>
+<div class="subtitle">AI-powered crypto analytics. Visual trading. Real-time insights.</div>
+</header>
+
+<div class="container">
+
+<div class="card fade-in">
+<h2>📱 React Native Developer</h2>
+<p>Join us to build a next-gen mobile app that transforms trading into visual AI insights.</p>
+</div>
+
+<div class="card fade-in">
+<h2>🚀 Responsibilities</h2>
+<ul>
+<li>Build high-performance iOS & Android apps</li>
+<li>Create real-time chart visualizations</li>
+<li>Integrate APIs and data streams</li>
+<li>Optimize performance for live trading data</li>
+</ul>
+</div>
+
+<div class="card fade-in">
+<h2>👤 Requirements</h2>
+<ul>
+<li>3+ years mobile development</li>
+<li>Strong React Native experience</li>
+<li>JavaScript / TypeScript</li>
+<li>Experience with APIs & real-time data</li>
+</ul>
+</div>
+
+<div class="card fade-in">
+<h2>📩 Apply Now</h2>
+<form class="apply-form" id="applyForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="portfolio" placeholder="Portfolio / GitHub">
+<input type="text" id="telegram" placeholder="Telegram @username">
+<textarea id="message" rows="5" placeholder="Tell us about yourself"></textarea>
+<button type="submit">Submit Application</button>
+</form>
+</div>
+
+</div>
+
+<footer>© 2026 ChartWise AI</footer>
+
+<script>
+// Настрой Telegram бота
+const telegramBotToken = 'YOUR_BOT_TOKEN'; // вставь сюда токен бота
+const telegramChatId = 'YOUR_CHAT_ID'; // вставь сюда свой chat_id
+
+document.getElementById('applyForm').addEventListener('submit', function(e){
+e.preventDefault();
+
+const name = document.getElementById('name').value;
+const email = document.getElementById('email').value;
+const portfolio = document.getElementById('portfolio').value;
+const telegramUser = document.getElementById('telegram').value;
+const message = document.getElementById('message').value;
+
+// Формируем текст для Telegram
+let text = `New Application:\nName: ${name}\nEmail: ${email}\nPortfolio: ${portfolio}\nMessage: ${message}`;
+if(telegramUser) text += `\nTelegram: https://t.me/${telegramUser.replace('@','')}`;
+
+// Отправка в Telegram
+fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({ chat_id: telegramChatId, text: text })
+})
+.then(res => {
+if(res.ok) alert('Application sent! ✅');
+else alert('Error sending application.');
+document.getElementById('applyForm').reset();
+})
+.catch(()=>alert('Error sending application.'));
+});
+</script>
+
+</body>
+</html>
